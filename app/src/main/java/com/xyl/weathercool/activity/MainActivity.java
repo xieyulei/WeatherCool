@@ -1,7 +1,9 @@
-package com.xyl.weathercool;
+package com.xyl.weathercool.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.xyl.weathercool.R;
 
 /**
  *  db包用于存放数据库模型相关的代码
