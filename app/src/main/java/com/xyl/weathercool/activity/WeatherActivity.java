@@ -2,11 +2,14 @@ package com.xyl.weathercool.activity;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -42,6 +45,9 @@ public class WeatherActivity extends AppCompatActivity {
     private ImageView bingPicImg;//必应每日一图
 
     public SwipeRefreshLayout swipeRefresh; //外部嵌套布局，具有下拉刷新的功能
+
+    public DrawerLayout drawerLayout;//抽屉栏
+    private Button navButton;//用于切换抽屉栏的状态切换(打开和隐藏)
 
 
     @Override
@@ -85,6 +91,16 @@ public class WeatherActivity extends AppCompatActivity {
         } else {
             loadBingPic();
         }
+
+        /**
+         * 添加按钮点击事件，切换抽屉栏目的状态
+         */
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
     }
 
@@ -175,7 +191,7 @@ public class WeatherActivity extends AppCompatActivity {
      *
      * @param weatherId
      */
-    private void requestWeather(final String weatherId) {
+    public void requestWeather(final String weatherId) {
         // String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=bc0418b57b2d4918819d3974ac1285d9";这个key时创建者-郭霖的key，当前已失效
         String weatherUrl = "http://guolin.tech/api/weather?cityid=" + weatherId + "&key=92b41385da0648fd977aad16da93a4f9";//和风天气api--key
         //和风天气api接口：https://console.heweather.com/my/service
@@ -237,5 +253,9 @@ public class WeatherActivity extends AppCompatActivity {
         bingPicImg = (ImageView) findViewById(R.id.bing_pic_img);
 
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        navButton = (Button) findViewById(R.id.nav_button);
     }
 }

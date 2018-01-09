@@ -3,6 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
     <!--天气页面，标题布局，一个居中显示城市名称，另一个靠右显示天气更新时间-->
+
+    <!--新增按钮Home键，主要负责抽屉栏目的隐藏与展开-->
+    <Button
+        android:id="@+id/nav_button"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/home"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
     <TextView
         android:id="@+id/title_city"
         android:layout_width="wrap_content"
