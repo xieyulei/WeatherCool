@@ -1,8 +1,12 @@
 package com.xyl.weathercool;
 
 /**
- *  Created by xyl on 2018/1/9.
- *  This class is used for record writing notes
+ * -------------------------
+ * Author：doraemon
+ * Created by xyl on 2018/1/9.
+ * ---------------------------
+ * This class is used for:
+ *
  */
 
 public class Note {
@@ -17,5 +21,15 @@ public class Note {
      * Glide: 'com.github.bumptech.glide:glide:3.7.0'
      *
      */
+
+    /**
+     * 第二部分：设计数据库的表结构
+     *
+     * 分别设置省、市、县，分别对应实体类：Province、City、County ;
+     *
+     */
+
+
+
 
 }

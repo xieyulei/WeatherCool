@@ -1,0 +1,11 @@
+<litepal>
+    <dbname value="weather_cool"/>
+    <version value="1"/>
+
+    <list>
+        <mapping class="com.xyl.weathercool.db.Province"/>
+        <mapping class="com.xyl.weathercool.db.City"/>
+        <mapping class="com.xyl.weathercool.db.County"/>
+    </list>
+
+</litepal>
