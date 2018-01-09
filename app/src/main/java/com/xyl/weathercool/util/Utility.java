@@ -2,9 +2,11 @@ package com.xyl.weathercool.util;
 
 import android.text.TextUtils;
 
+import com.google.gson.Gson;
 import com.xyl.weathercool.db.City;
 import com.xyl.weathercool.db.County;
 import com.xyl.weathercool.db.Province;
+import com.xyl.weathercool.gson.Weather;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,7 +80,7 @@ public class Utility {
                 JSONArray allCounties = new JSONArray(response);
                 for (int i = 0; i < allCounties.length(); i++) {
                     JSONObject countyObject = allCounties.getJSONObject(i);
-                    County county=new County();
+                    County county = new County();
                     county.setCountyName(countyObject.getString("name"));
                     county.setWeatherId(countyObject.getString("weather_id"));
                     county.setCityId(cityId);
@@ -91,5 +93,24 @@ public class Utility {
         }
         return false;
     }
+
+
+    /**
+     * 将返回的JSON数据解析成Weather实体类
+     * @param response
+     * @return
+     */
+    public static Weather handleWeatherResponse(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

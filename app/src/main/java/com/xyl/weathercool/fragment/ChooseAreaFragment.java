@@ -1,6 +1,7 @@
 package com.xyl.weathercool.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xyl.weathercool.R;
+import com.xyl.weathercool.activity.WeatherActivity;
 import com.xyl.weathercool.db.City;
 import com.xyl.weathercool.db.County;
 import com.xyl.weathercool.db.Province;
+import com.xyl.weathercool.gson.Weather;
 import com.xyl.weathercool.util.HttpUtil;
 import com.xyl.weathercool.util.Utility;
 
@@ -92,6 +95,12 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                } else if (currentLevel == LEVEL_COUNTY) {
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -138,7 +147,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCities() {
         titleText.setText(selectedProvince.getProvinceName());//将标题设置为选择的省份名称
         backButton.setVisibility(View.VISIBLE);//将返回按钮设置为显示状态
-        cityList = DataSupport.where("provinceId=?",String.valueOf(selectedProvince.getId())).find(City.class);//优先从数据库中查询城市数据
+        cityList = DataSupport.where("provinceId=?", String.valueOf(selectedProvince.getId())).find(City.class);//优先从数据库中查询城市数据
         if (cityList.size() > 0) {//如果数据库中存在城市数据
             dataList.clear();//刷新列表，清除列表中的数据
             for (City city : cityList) {
@@ -162,7 +171,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCounties() {
         titleText.setText(selectedCity.getCityName());//设置标题显示为查询到城市名称
         backButton.setVisibility(View.VISIBLE);//设置返回按钮为显示状态
-        countyList = DataSupport.where("cityId=?",String.valueOf(selectedCity.getId())).find(County.class);
+        countyList = DataSupport.where("cityId=?", String.valueOf(selectedCity.getId())).find(County.class);
         if (countyList.size() > 0) {
             dataList.clear();
             for (County county : countyList) {
