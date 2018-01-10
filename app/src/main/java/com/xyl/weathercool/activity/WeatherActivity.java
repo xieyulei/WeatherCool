@@ -1,5 +1,6 @@
 package com.xyl.weathercool.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.xyl.weathercool.R;
 import com.xyl.weathercool.gson.Forecast;
 import com.xyl.weathercool.gson.Weather;
+import com.xyl.weathercool.service.AutoUpdateService;
 import com.xyl.weathercool.util.HttpUtil;
 import com.xyl.weathercool.util.Utility;
 
@@ -219,6 +221,10 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather", responseText);
                             editor.apply();
                             showWeatherInfo(weather);
+
+                            //启动后台更新天气和背景图片的服务
+                            Intent intent = new Intent(WeatherActivity.this, AutoUpdateService.class);
+                            startService(intent);
                         } else {
                             Toast.makeText(WeatherActivity.this, "获取天气信息失败", Toast.LENGTH_SHORT).show();
                         }
