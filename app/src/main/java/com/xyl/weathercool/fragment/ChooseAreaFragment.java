@@ -68,6 +68,13 @@ public class ChooseAreaFragment extends Fragment {
 
     private ProgressDialog dialog;
 
+    /**
+     * 此方法在为碎片创建视图（加载碎片布局）时调用
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,6 +91,11 @@ public class ChooseAreaFragment extends Fragment {
     }
 
 
+    /**
+     * 此方法一定要在onCreate方法被调用完成之后才可以调用，Activity被成功渲染之后才会调用
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

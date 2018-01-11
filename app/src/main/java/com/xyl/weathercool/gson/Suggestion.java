@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by xyl on 2018/1/9.
  * ---------------------------
  * This class is used for:
+ * 实体类：生活建议类，包含三个参数，分别为：舒适度建议、洗车建议、运动建议
  */
 
 public class Suggestion {

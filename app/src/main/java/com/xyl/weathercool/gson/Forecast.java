@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by xyl on 2018/1/9.
  * ---------------------------
  * This class is used for:
+ * 实体类：包含三个参数，分别为：最高温度、最低温度、天气状况
  */
 
 public class Forecast {

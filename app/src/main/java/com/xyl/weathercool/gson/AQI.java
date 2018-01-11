@@ -6,6 +6,7 @@ package com.xyl.weathercool.gson;
  * Created by xyl on 2018/1/9.
  * ---------------------------
  * This class is used for:
+ * 实体类：包含两个参数，分别为：aqi指数与pm2.5指数
  */
 
 public class AQI {
